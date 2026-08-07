@@ -72,7 +72,8 @@
 - **信息架构**：Scenario Builds → 双生对比 → Insight 定格 → 增益看板  
 - **诚实边界**：Web Mock，非真机；SHADOW 失败是消融设计，用于反事实归因  
 
-详细方案摘要见：[`docs/proposal-summary.md`](docs/proposal-summary.md)
+详细方案摘要见：[`docs/proposal-summary.md`](docs/proposal-summary.md)  
+**产品岗作品集页**见：[`docs/portfolio.md`](docs/portfolio.md)
 
 ---
 
