@@ -1,122 +1,123 @@
-# Counterfactual Shadow Twin
+# 家庭具身智能双胞胎系统
+## Home Embodied Intelligence Twin
 
-**AI Value Proven** — 同环境种子下的 **MAIN（AI World）vs SHADOW（Non-AI World）** 反事实验证台。
+> 面向未来家庭机器人的 AI 决策验证原型：在数字孪生中对照 **MAIN（AI 策略）** 与 **SHADOW（非 AI / 基线策略）**，于真机进家前回答——「开了这套智能，到底有没有用？」
 
-一句话：不是又一个家庭机器人 3D 看板，而是用消融对比证明「语义时效 + 反事实重规划」是否真的创造价值。
-
-> **边界**：Web Mock 仿真，**非**真机固件。SHADOW 失败是**消融设计**（关闭 AI 策略的反事实），用于论证，不是物理引擎 bug。
-
----
-
-## 技术栈
-
-| 层 | 选型 |
-|----|------|
-| 框架 | Next.js（App Router）+ React + TypeScript |
-| 状态 | Zustand（`useHomeStore`） |
-| 仿真 | `hooks/useHomeSimulation.ts`（单一 50ms tick 推 MAIN+SHADOW） |
-| 3D | React Three Fiber + Drei + Three.js |
-| UI | Tailwind、Lucide、Framer Motion |
+[![Demo Repo](https://img.shields.io/badge/GitHub-home--embodied--twin-blue?logo=github)](https://github.com/hanatuaugustinepwajok-droid/home-embodied-twin)
 
 ---
 
-## 安装与启动
+## 一句话定位
+
+这不是又一个「家庭场景 3D 看板」，而是一套 **AI Value Proven（智能价值可证明）** 的产品原型：用同环境、同扰动下的反事实对照，验证语义理解与任务重规划是否真正降低失败、减少无效行动。
+
+**适用场景**：具身智能 / 家庭机器人 / Agent 产品岗作品集 · 方案演示 · 命题验证。
+
+---
+
+## 要解决什么问题
+
+家庭机器人落地前，团队往往只能「上真机试」或「看 Demo 动画」。两者都难回答产品真正关心的问题：
+
+| 真实痛点 | 产品后果 |
+|----------|----------|
+| 动态障碍、遮挡导致导航不稳 | 任务中断、体验不可信 |
+| 空间语义过期（人/物位置变了） | 找错房间、检索失败 |
+| 寻人寻物缺少闭环与恢复 | 失败后无法解释、无法复盘 |
+| 「加了 AI」说不清增益 | 投入难立项、难对齐指标 |
+
+本项目把上述问题收敛成一个可演示的产品问题：
+
+> **在相同家庭扰动下，开启 AI 策略相对关闭 AI（基线）能多交付多少成功、少走多少冤枉路？**
+
+---
+
+## 产品方案：MAIN × SHADOW 双胞胎对照
+
+| 角色 | 含义 | 策略假设 |
+|------|------|----------|
+| **MAIN · AI World** | 真实智能系统 | 动态语义地图 · 置信度时效 · 反事实重规划 |
+| **SHADOW · Non-AI World** | 影子 / 消融基线 | 静态地图 · 无语义时效 · 遇障不重规划 |
+
+**同一环境种子、同一扰动事件**同时广播给两侧；差异只来自策略。挑战触发后预期叙事为：
+
+- SHADOW → 卡住 / 失败（红）  
+- MAIN → 重规划 → 成功（绿）  
+- 自动生成 **Counterfactual Insight**（扰动 / 反事实结论 / 收益三行），供演示与面试口述  
+
+四类家庭扰动（障碍、语义过期、目标遮挡、任务中断）被设计为**实验刺激**，而非功能堆砌。
+
+---
+
+## 核心能力（对产品岗）
+
+1. **家庭环境数字孪生**  
+   房间、人员、物体与任务状态一屏可视，支持语义地图与 3D 空间对照。
+
+2. **Agent 任务规划与恢复**  
+   寻人 / 寻物任务可拆步执行；目标丢失或遇障后进入可观测的重规划闭环。
+
+3. **MAIN vs SHADOW 对照实验**  
+   分屏 / 叠加视图 + 代价曲线 + A/B 增益指标，把「AI 有没有用」做成可看的结论，而不是口号。
+
+4. **可演示的验证剧本**  
+   「一键反事实验证」、挑战卡、消融开关（关掉某一能力看价值来自哪一块）、seed 可复现、结论可导出——方便 60 秒录屏与作品集附页。
+
+---
+
+## 我负责的产品思考（作品集可写）
+
+- **问题定义**：从「做出酷炫仿真」转向「证明策略价值」  
+- **实验设计**：自变量 = AI 能力开闭；因变量 = 成败、代价、重规划有效性  
+- **信息架构**：Scenario Builds → 双生对比 → Insight 定格 → 增益看板  
+- **诚实边界**：Web Mock，非真机；SHADOW 失败是消融设计，用于反事实归因  
+
+详细方案摘要见：[`docs/proposal-summary.md`](docs/proposal-summary.md)
+
+---
+
+## 技术栈（实现层）
+
+| 类型 | 技术 |
+|------|------|
+| 前端 | Next.js · React · TypeScript |
+| 3D | Three.js · React Three Fiber |
+| 状态 | Zustand |
+| UI / 动效 | Tailwind CSS · Framer Motion |
+
+> 技术服务于验证闭环；产品叙事优先于渲染复杂度。
+
+---
+
+## 快速开始
 
 ```bash
 npm install
 npm run dev
 ```
 
-打开 [http://localhost:3000](http://localhost:3000)。建议 **1920×1080** 一屏演示。
+浏览器打开 [http://localhost:3000](http://localhost:3000)（建议 1920×1080）。
 
-```bash
-npx tsc --noEmit
-```
+**30 秒演示路径**
 
----
+1. 点击 **一键反事实验证**（或先开对比再选挑战卡）  
+2. 观察 MAIN 重规划成功 vs SHADOW 失败  
+3. 阅读中间 **Insight 三行**与底部增益  
+4. 可选：复制 `seed` / 导出结论  
 
-## 界面分区
-
-```
-┌────────────────┬─────────────────────┬──────────────────┐
-│ Scenario Builds│ AI World │ Non-AI   │ 任务步骤         │
-│ 语义地图       │   3D 反事实双生      │ 事件时间轴       │
-│ About / 消融   │ Insight + 代价曲线   │                  │
-├────────────────┴─────────────────────┴──────────────────┤
-│            MAIN vs SHADOW 增益看板（A/B）                 │
-└─────────────────────────────────────────────────────────┘
-```
-
-| 区域 | 作用 |
-|------|------|
-| **Scenario Builds** | 一键反事实验证、挑战卡、消融开关、导出结论 |
-| **中区双生** | AI World / Non-AI World 分屏或叠加 |
-| **Insight** | 三行定稿：扰动 / 反事实 / 收益 |
-| **指标** | 以 SHADOW 为基线的增益对比 |
-| **顶栏** | AI Value Proven · seed 可复制 · What if AI disabled |
+仓库：https://github.com/hanatuaugustinepwajok-droid/home-embodied-twin
 
 ---
 
-## 核心叙事：反事实验证
+## 项目边界
 
-| 角色 | 策略 | 挑战下预期 |
-|------|------|------------|
-| **MAIN** | 动态语义地图 + 置信度衰减 + 反事实重规划 | 重规划 → SUCCESS（绿） |
-| **SHADOW** | 静态占用 + 启发式，无语义时效 | STALLED / FAILED（红） |
-
-四类扰动（原「四挑战」）降级为**实验刺激**：
-
-1. 动态障碍  
-2. 目标遮挡 / 丢失  
-3. 语义过期（置信度）  
-4. 任务中断后恢复  
-
-### 30 秒演示（推荐）
-
-1. 点 **「一键反事实验证」**  
-2. 自动：开对比 → 找爸爸 → 注入障碍 → 等到 SHADOW 红失败 + MAIN 重规划  
-3. **Insight 定格**（三行可背）+ 代价曲线 + 底部增益  
-4. 可选：复制 `seed=` / **同 seed 再跑** / **导出结论**
-
-手动路径：`What if AI disabled` → 挑战卡「动态障碍」或「目标遮挡」→ 看 Insight。
+- 当前为 **浏览器内 Mock 原型**，用于策略与交互验证，**不是**真实机器人固件或完整 SLAM/VLM 产线。  
+- 后续可演进接入点：真机定位、VLM 语义、ReID / 人脸、云端规划服务——在保持 MAIN/SHADOW 对照框架不变的前提下替换数据源。
 
 ---
 
-## 消融开关
+## 一句话收束
 
-左侧可勾选：
+**家庭具身智能双胞胎系统**探索的是：
 
-- 动态语义地图  
-- 语义时效衰减  
-- 反事实重规划  
-
-关闭某一项时 MAIN 行为降级，用于回答：「价值来自哪一块能力」。
-
----
-
-## 指标含义（A/B）
-
-增益以 **SHADOW 为基线**。任务未结束显示「进行中」，避免误导性 0%。
-
-典型字段：定位稳定度、避障成功率、寻人寻物成功率、平均耗时、重规划有效率。
-
----
-
-## 作品集口径
-
-- 标题：**Counterfactual Shadow Twin · AI Value Proven**  
-- 详细方案：见 [`docs/proposal-summary.md`](docs/proposal-summary.md)  
-- 诚实边界：Mock、非真机、影子失败=消融设计  
-
----
-
-## 目录要点
-
-```
-types/          home.ts · counterfactual.ts
-store/          useHomeStore.ts
-hooks/          useHomeSimulation.ts
-components/     ControlPanel · HomeTwinCanvas · CounterfactualHud …
-lib/            insightTemplate.ts · roomFocus.ts
-docs/           proposal-summary.md
-```
+> 未来家庭机器人如何在进入真实家庭之前，用 AI Agent + 数字孪生对照，把「自主决策」做成可验证、可讲解、可立项的产品能力。
